@@ -1,12 +1,12 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "./MainForm.scss";
 import { Button, Form, Input, Space } from "antd";
 
 const SubmitButton = ({ form }) => {
-  const [submittable, setSubmittable] = React.useState(false);
+  const [submittable, setSubmittable] = useState(false);
 
   const val = Form.useWatch([], form);
-  React.useEffect(() => {
+  useEffect(() => {
     form
       .validateFields({
         validateOnly: true,
@@ -28,6 +28,7 @@ const SubmitButton = ({ form }) => {
 };
 
 const MainForm = () => {
+  const [clicked, setClicked] = useState(false);
   const [form] = Form.useForm();
   return (
     <div className="form-container">
@@ -37,11 +38,16 @@ const MainForm = () => {
         name="validateOnly"
         layout="vertical"
         autoComplete="off"
+        onSubmit={() => {
+          setClicked(false);
+        }}
       >
         <Form.Item
           name="firstName"
           label="Firs Name"
           className="form-item"
+          hasFeedback
+          validateStatus={`${clicked ? "success" : ""} `}
           rules={[
             {
               required: true,
@@ -68,7 +74,6 @@ const MainForm = () => {
           name="email"
           label="Email"
           className="form-item"
-          labelPosition="top"
           rules={[
             {
               required: true,
@@ -103,3 +108,4 @@ const MainForm = () => {
 };
 
 export default MainForm;
+
