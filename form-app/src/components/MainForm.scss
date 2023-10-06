@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .form {
+    padding: 20px;
+    width: 35%;
+    margin: 0 auto;
+    margin-top: 10%;
+    .form-item {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
